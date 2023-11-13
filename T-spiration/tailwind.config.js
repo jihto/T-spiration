@@ -18,6 +18,25 @@ module.exports = {
       colors:{
         'base1': '#18EFFA',
         'base2': '#0D72FD',
+        'primary': 'white',
+        "secondary" : "black"
+      },
+      dropShadow:{
+        // 'full':'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))'
+      },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        move:{
+          '0%, 100%': { transform: 'translateY(-40px)' },
+          '50%': { transform: 'translateY(10px)' },
+        }
+      }, 
+      animation: {
+        wiggle: 'wiggle 2s ease-in-out infinite',
+        'move-slow': 'move 5s linear infinite',
       }
     },
   },

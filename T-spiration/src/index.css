@@ -6,8 +6,21 @@
   .color-base-gradient {
     @apply bg-gradient-to-r from-[#18EFFA] to-[#0D72FD];
   }
+  
+  .my-element {
+    @apply bg-gradient-to-r from-black to-yellow-400 blur-10;
+  }
+
+.text-blur-none{
+  @apply text-white filter-none;
+}
 }
 
+@layer utilities {
+  .blur-10 {
+    filter: blur(10px);
+  }
+}
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

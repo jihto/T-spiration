@@ -1,5 +1,7 @@
+import Box from "./Box";
 import Button from "./buttons/Button";
-
+import ButtonIcon from "./buttons/ButtonIcon";
+import { BsArrowUpRight } from 'react-icons/bs';
 
 interface OutstandingProps {
     size?: 'large' | "small";
@@ -13,8 +15,14 @@ const Outstanding:React.FunctionComponent<OutstandingProps> = ({
     content
 }) => {
     return (
-        <div className={`grid grid-cols-2 overflow-hidden shadow-md rounded-3xl p-6 relative ${size === "small" ? "w-1/2 h-full text-white bg-[#dab497]" : "bg-gray-100"}`}>
-            <img className={`flex-1 object-contain z-0 ${size === "small" ? "absolute -bottom-10 -right-10 opacity-60" : "lg:relative w-1/2 lg:w-full lg:h-full"}`} src="public/images/sport.png" />
+        <Box cols={size === "small" ? 1 : 2} className={`relative justify-start mt-6 lg:m-0 lg:py-8 ${size === "small" ? "w-full lg:w-1/2 h-full text-black bg-[#c1f5fc]" : "text-white bg-[#bed7da]"}`}>
+            <div className={`${size === "small" ? "absolute -bottom-1 -right-1 opacity-60" : "lg:relative animate-move-slow drop-shadow-2xl w-full"}`}>
+                <img className={`
+                        flex-1 max-h-[300px] object-contain z-10  
+                    `} 
+                    src={ size === "small" ? "/public/images/grey_eyeglasses.png" : "/public/images/grey_eyeglasses.png"} 
+                />
+            </div>
             <div className="z-10">
                 {size === "large"
                     ?<p className="uppercase text-2xl">
@@ -22,15 +30,15 @@ const Outstanding:React.FunctionComponent<OutstandingProps> = ({
                     </p>
                     : null
                 }
-                <p className={`lg:text-6xl md:text-4xl sm:text-2xl uppercase my-5`}>
+                <p className={`lg:text-5xl md:text-3xl sm:text-2xl uppercase my-5`}>
                     {header} 
                 </p>
                 <div className="my-8 z-10">
                     {content}
                 </div> 
-                <Button label="View Product" color={size === "small" ? false : true}/>
+                <Button><BsArrowUpRight/>View Product</Button>
             </div>
-        </div>
+        </Box>
     )
 }
 

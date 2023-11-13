@@ -4,27 +4,26 @@ import { useState } from 'react';
 
 
 
-interface ProductsProps{
+interface SellerProductsProps{
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void; 
     label?: string; 
 }
-const Products: React.FunctionComponent<ProductsProps> = ({
+const SellerProducts: React.FunctionComponent<SellerProductsProps> = ({
     // onClick, 
     // label, 
 }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     return (
-        <div className="w-full rounded-xl flex flex-wrap my-5 gap-5">
-            {isOpen
+        <div className="w-full rounded-xl flex flex-wrap my-5 gap-2">
+            {/* {isOpen
                 ? <ProductModal isOpen={isOpen} setIsOpen={setIsOpen}/>
                 : null
-            }
+            } */}
             
             {
                 [1,2,3,4,5,6,7,8,9,10,11,21,12,13,45].map(item => (
                     <div key={item}>
-                        <Product setIsOpen={setIsOpen} key={item}/>
-                        
+                        <Product role="seller" setIsOpen={setIsOpen} key={item}/> 
                     </div>
                 ))
             }
@@ -33,4 +32,4 @@ const Products: React.FunctionComponent<ProductsProps> = ({
     )
 }
 
-export default Products;
+export default SellerProducts;

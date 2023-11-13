@@ -1,8 +1,11 @@
 import ButtonIcon from "../buttons/ButtonIcon"; 
-import { GiSettingsKnobs } from 'react-icons/gi';
+import { BiFilterAlt } from 'react-icons/bi';
 import { IoCloseOutline, IoAddOutline } from 'react-icons/io5'
 import { IoIosArrowDown } from 'react-icons/io'
 import { useState } from 'react';
+import Button from "../buttons/Button";
+
+const listCategoris = ["All products", "Most purchased", "Basketball", "Running", "Football", "Fun Sneakers"];
 
 
 interface CatecoriesProps{}
@@ -23,26 +26,27 @@ const Catecories: React.FunctionComponent<CatecoriesProps> = ({
         setLists([...lists,item])
     }
     return ( 
-        <div className="relative rounded-full border-2 w-1/2 py-2 px-4 border-spacing-1 flex justify-between">
-            {catecories.map((item:string) => (
-                <ButtonIcon 
-                    key={item} 
-                    label={item} 
-                    size="medium"
-                    icon={IoIosArrowDown} 
+        <div className="relative w-full py-2 px-4 border-spacing-1 grid justify-between grid-flow-col gap-3">
+            {listCategoris.map((item:string) => (
+                <Button 
+                    key={item}  
+                    outline={false}   
                     onClick={() => {}}
-                    />
-                    ))}
+                    color={false}
+                >{item}</Button>
+            ))}
+            <hr/>
             <ButtonIcon 
-                icon={GiSettingsKnobs} 
-                label="Catecories" 
+                icon={BiFilterAlt} 
+                label="Sort by" 
                 size="medium"
+                outline={true}
                 onClick={()=>setIsOpen(!isOpen)}
             />
             {
                 isOpen
                     ? <>
-                        <div className="absolute top-full right-0 bg-gray-200 shadow-xl w-1/2 h-[200px] z-10 p-2 rounded-3xl">  
+                        <div className="absolute top-full right-0 bg-gray-200 shadow-xl w-1/2 lg:w-1/4 h-[200px] z-10 p-2 rounded-3xl">  
                             <div className="after:absolute after:-top-2 after:right-8 after:rotate-45 after:w-5 after:h-5 after:bg-gray-300"></div>
                                 <div className="flex gap-2 w-full flex-wrap"> 
                                     {catecories.map((item:string) => (
@@ -72,7 +76,7 @@ const Catecories: React.FunctionComponent<CatecoriesProps> = ({
                         </div>
                     </>
                     : null
-            }
+            } 
         </div>
     )
 }

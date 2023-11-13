@@ -7,6 +7,7 @@ interface ButtonIconProps{
     label?: string;
     size?: 'large' | 'medium' | 'small';
     children?: React.ReactNode;
+    outline?: boolean;
 }
 const ButtonIcon: React.FunctionComponent<ButtonIconProps> = ({
     onClick,
@@ -14,19 +15,21 @@ const ButtonIcon: React.FunctionComponent<ButtonIconProps> = ({
     label,
     size = 'large',
     children,
+    outline = false,
 }) => {
     return (
         <button 
             className={`
-                p-1 rounded-full flex items-center relative
-                ${label && 'px-4 py-2 gap-2'}
-                ${size === 'large' ? 'text-base bg-gray-200' : size === 'medium' ? 'text-base bg-gray-300' : 'text-sm h-1/2 bg-gray-400'} 
+                ${outline ? "bg-white border-[1px]" : ""}
+                p-1 rounded-full flex items-center relative shadow-sm font-normal
+                ${label && 'px-4 py-1 gap-2'}
+                ${size === 'large' ? 'text-base text-black bg-gray-200' : size === 'medium' ? 'text-base bg-gray-300' : 'text-sm h-1/2 bg-gray-400'} 
             `} 
             onClick={onClick}
         >
             {children}
-            {label}
             {Icon && <Icon size={size === 'large' ? 32 : size === "medium" ? 24 : 12}/> }
+            <p className='font-medium'>{label}</p>
         </button>
     )
 }

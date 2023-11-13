@@ -1,26 +1,37 @@
+import { MdClose } from "react-icons/md";
+import ButtonIcon from "../buttons/ButtonIcon";
 
 
-interface ModalProps{
-    size?: "large" | "small";
+interface ModalProps{ 
     isOpen: boolean,
-    setIsOpen: (isOpen: boolean) => void ; 
-    header: React.ReactNode;
+    showIn?: "center" | 'left';
+    setIsOpen: (isOpen: boolean) => void ;  
     content: React.ReactNode;
     action?: React.ReactNode;
+    className?: string;
 }
-const Modal: React.FunctionComponent<ModalProps> = ({
-    size = "large",
+const Modal: React.FunctionComponent<ModalProps> = ({ 
     isOpen,
+    showIn = "center",
     setIsOpen, 
-    header,
     content, 
-    action
+    className = "",
+    action, 
 }) => { 
     return (
-        <div className={`fixed z-50 bg-black overflow-x-hidden overflow-y-auto ${isOpen ? "w-full h-full" : "w-full h-0"} transition-[1000ms] z-50 inset-0 focus:outline-none bg-neutral-800/70 flex items-center justify-center`}>
-            <div className={`relative bg-white p-4 rounded-xl ${size==="large" ? 'w-2/3 h-fit':"w-1/3 h-1/2"}`}>
-                <div className="absolute right-4"> 
-                    {header} 
+        <div className={`
+                fixed z-50 bg-black overflow-hidden w-full 
+                transition-[1000ms] inset-0 focus:outline-none bg-neutral-800/70 flex 
+                ${isOpen ?  "h-full" : "h-0"} 
+                ${showIn === "left" ? "items-start justify-end":"items-center justify-center"} 
+            `}>
+            <div 
+                className={` ${className}
+                    relative bg-white p-4  grid rounded-xl 
+                    ${showIn === "left" && 'w-2/3 lg:w-2/5 xl:w-2/6 h-full rounded-l-xl'}
+            `}>
+                <div className="absolute top-4 right-4 drop-shadow-lg"> 
+                    <ButtonIcon icon={MdClose} onClick={()=>setIsOpen(false)}/>
                 </div> 
                 <div className="mt-4"> 
                     {content} 

@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import Container from "../conponents/Container"
+import Container from "../conponents/containers/Container";
 import Button from "../conponents/buttons/Button";
-import ButtonIcon from "../conponents/buttons/ButtonIcon";
-import ProductCart3D from "../conponents/product/ProductCart3D";
-import { BiArrowBack } from 'react-icons/bi';
+import ProductCart from "../conponents/product/ProductCart";
 
 export interface CartProps{}
 
@@ -11,44 +9,42 @@ const Cart: React.FunctionComponent<CartProps> = () =>  {
     const navigation = useNavigate()
     return (
         <Container>
-            <div className="grid gap-5 mt-20 lg:flex w-full justify-between">
-                <div className="w-full lg:w-1/2 xl:w-1/3">
-                    <ProductCart3D></ProductCart3D>
-                </div>
-                <div className="w-full lg:w-1/2 xl:w-2/3 bg-gray-200 drop-shadow-lg rounded-2xl p-10">
-                    <Button 
-                        label={<>
-                                <BiArrowBack size={24}/>
-                                <p>Back</p>
-                                </>
-                            } 
-                        onClick={()=>navigation('/')}
-                        locationIcon="left"
-                    />
-                    <p className="mt-5 text-xl font-bold">Shopping Cart</p> 
-                    <table className="w-full my-10 font-bold">
-                        <thead>
-                            <tr> 
-                                <td>Count</td>
-                                <td>Name Product</td>
-                                <td>Size</td>
-                                <td>Image</td>
-                                <td>Price</td>
-                            </tr>
-                        </thead>
-                        <tbody> 
-                {/* <div className="bg-gray-400 w-full h-px rounded-full"></div> */}
-                            <tr >
-                                <td>x1</td>
-                                <td>T-shirt</td>
-                                <td>L</td>
-                                <td >
-                                    <img className="max-w-[100px] mt-5 ml-10" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dCUyMHNoaXJ0fGVufDB8fDB8fHww&w=1000&q=80"/>
-                                </td>
-                                <td>10.00$</td>
-                            </tr> 
-                        </tbody> 
-                    </table>
+            <div className="flex flex-col gap-12 mx-[1%] lg:mx-[10%] justify-between">
+                <p className="text-3xl font-bold">Shopping Cart</p>
+                <div className="grid lg:grid-cols-2 lg:justify-items-end w-full">
+                    <div className="w-full flex flex-col gap-2">
+                        <div className="grid w-full grid-cols-5">
+                            <p></p>
+                            <p>Product</p>
+                            <p>Price</p>
+                            <p>Quantity</p>
+                            <p>Total Price</p>
+                        </div>
+                        {
+                            [1,2,3].map(item => (
+                                <ProductCart key={item}/>
+                            ))
+                        } 
+                        <Button outline={true} onClick={()=>navigation('/user')}>Update Cart</Button>
+                    </div>
+                    <div className="border-2 rounded-3xl w-full lg:w-3/4 grid gap-8 my-4 p-10">
+                        <p className="text-xl font-medium">Order Sumery</p>
+                        <div className="flex justify-between gap-10">
+                            <Button outline={true}>Discount Voucher</Button>
+                            <Button>Apply</Button>
+                        </div>
+                        <div className="grid grid-cols-2 text-gray-900 gap-3">
+                            <p>Sub Total: </p>
+                            <p>2.00$</p>
+                            <p>Discount(15%)</p>
+                            <p>-10$</p>
+                            <p>Shipping Fee: </p>
+                            <p>+5$</p>
+                            <p>Total: </p>
+                            <p>17.00$</p>
+                        </div>
+                        <Button>Checkout Now</Button>
+                    </div>
                 </div>
             </div>
         </Container>
