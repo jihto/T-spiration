@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\api\\src",
+    "\\api\\src\\product",
+    "\\api\\uploads",
+    "\\api\\uploads\\images",
+    "\\client",
+    "\\client\\src",
+    "\\client\\src\\conponents",
+    "\\client\\src\\hooks",
+    "\\client\\src\\pages",
+    "\\client\\src\\pages\\user"
+  ],
+  "SelectedNode": "\\client\\src\\conponents\\Brand.tsx",
+  "PreviewInSolutionExplorer": true
+}
